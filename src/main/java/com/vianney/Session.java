@@ -7,7 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
+import javax.persistence.EntityManager;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -15,6 +15,9 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
+
+import com.vianney.dao.FormateurDao;
+import com.vianney.tools.PersistenceUnitFactory;
 
 @Entity
 @Table
@@ -52,7 +55,9 @@ public class Session extends DbObject {
 	 * ******METHODES****************
 	 * ******************************/
 	public void ajoutStagiaire(Stagiaire stagiaire) {
-		stagiaires.add(stagiaire);
+		if(!stagiaires.contains(stagiaire)) {
+			stagiaires.add(stagiaire);	
+		}
 	}
 	
 	/* ******************************
@@ -86,7 +91,7 @@ public class Session extends DbObject {
 		return formateur;
 	}
 	public void setFormateur(Formateur formateur) {
-		this.formateur = formateur;
+			this.formateur = formateur;
 	}
 	public List<Stagiaire> getStagiaires() {
 		return stagiaires;

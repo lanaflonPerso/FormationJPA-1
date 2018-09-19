@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -16,6 +16,7 @@ public class Formateur extends Personne {
 	private static final long serialVersionUID = 1L;
 	
 	private boolean interne;
+	@Column(nullable=false)
 	private String matricule;
 	@ManyToMany(cascade= CascadeType.ALL)
 	private List<Formation> competences= new ArrayList<>();
@@ -36,7 +37,9 @@ public class Formateur extends Personne {
 	 * ******GETTER / SETTERS PERSO**
 	 * ******************************/
 	public void setCompetence(Formation competence) {
-		this.competences.add(competence);
+		if(!competences.contains(competence)) {
+			competences.add(competence);	
+		}
 	}
 	/* ******************************
 	 * ******GETTER / SETTERS********

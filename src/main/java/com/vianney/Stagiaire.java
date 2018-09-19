@@ -17,13 +17,13 @@ import com.vianney.enumeration.PriseEnCharge;
 @Table
 //@DiscriminatorValue("mon_stagiaire")
 public class Stagiaire extends Personne {
-	private static long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 	
 	private String societe;
 	@Column(name="prise_en_charge")
 	private PriseEnCharge PeC;
-//	@ManyToMany(mappedBy="stagiaires")
-//	private List<Session> sessions= new ArrayList<>();
+	@ManyToMany(mappedBy="stagiaires")
+	private List<Session> sessions= new ArrayList<>();
 	@Embedded
 	private AdressePt adresse;
 	
@@ -48,11 +48,11 @@ public class Stagiaire extends Personne {
 		this.societe = societe;
 	}
 	
-//	public void setSession(Session session) {
-//		if(sessions.contains(session)) {
-//			sessions.add(session);
-//		}
-//	}
+	public void setSession(Session session) {
+		if(!sessions.contains(session)) {
+			sessions.add(session);
+		}
+	}
 	
 	/* ******************************
 	 * ******GETTER / SETTERS********
@@ -86,11 +86,5 @@ public class Stagiaire extends Personne {
 	public String toString() {
 		return "Stagiaire [societe=" + societe + ", PeC=" + PeC + ", getNom()=" + getNom() + ", getPrenom()="
 				+ getPrenom() + ", getGenre()=" + getGenre() + ", getId()=" + getId() + "]";
-	}
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-	public static void setSerialversionuid(long serialversionuid) {
-		serialVersionUID = serialversionuid;
 	}
 }

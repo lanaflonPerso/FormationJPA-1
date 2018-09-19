@@ -8,6 +8,7 @@ public class Formation extends DbObject {
 	private static final long serialVersionUID = 1L;
 	
 	private String titre;
+	@Column(nullable=false)
 	private String code;
 	@Column(name="prix_ht", precision=6, scale=2)
 	private Double prix;

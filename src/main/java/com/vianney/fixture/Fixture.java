@@ -11,14 +11,17 @@ import com.vianney.Formation;
 import com.vianney.Session;
 import com.vianney.Stagiaire;
 import com.vianney.dao.Dao;
+import com.vianney.dao.FormateurDao;
+import com.vianney.dao.FormationDao;
 import com.vianney.enumeration.Genre;
 import com.vianney.enumeration.PriseEnCharge;
 import com.vianney.tools.PersistenceUnitFactory;
 
 public class Fixture {
 	
+	private static EntityManager em= PersistenceUnitFactory.createEntityManager("FormationSession");
+	
 	public static void save() {
-		EntityManager em= PersistenceUnitFactory.createEntityManager("FormationSession");
 		Dao dao= new Dao();
 		dao.saveOrUpdate(getSession_1(), em, false);
 		dao.saveOrUpdate(getSession_2(), em, false);
@@ -33,7 +36,7 @@ public class Fixture {
 		return adresse;
 	}
 
-	public static Stagiaire getStagiaire_1() {
+	public static Stagiaire getBallutinJoe() {
 		Stagiaire stagiaire= new Stagiaire("ballutin", "joe", "megaSociete");
 		stagiaire.setPeC(PriseEnCharge.FONGECIF);
 		stagiaire.setGenre(Genre.MASCULIN);
@@ -41,7 +44,7 @@ public class Fixture {
 		return stagiaire;
 	}
 	
-	public static Stagiaire getStagiaire_2() {
+	public static Stagiaire getDurantPascal() {
 		Stagiaire stagiaire= new Stagiaire("durant", "pascal", "gigaSociete");
 		stagiaire.setPeC(PriseEnCharge.INDIVUDUEL);
 		stagiaire.setGenre(Genre.MASCULIN);
@@ -49,7 +52,7 @@ public class Fixture {
 		return stagiaire;
 	}
 	
-	public static Stagiaire getStagiaire_3() {
+	public static Stagiaire getFerrariLaurence() {
 		Stagiaire stagiaire= new Stagiaire("ferrari", "laurence", "petaSociete");
 		stagiaire.setPeC(PriseEnCharge.POLE_EMPLOI);
 		stagiaire.setGenre(Genre.FEMININ);
@@ -57,28 +60,28 @@ public class Fixture {
 		return stagiaire;
 	}
 
-	public static Stagiaire getStagiaire_4() {
+	public static Stagiaire getBalliuPaulette() {
 		Stagiaire stagiaire= new Stagiaire("balliu", "paulette", "picoSociete");
 		stagiaire.setPeC(PriseEnCharge.POLE_EMPLOI);
 		stagiaire.setGenre(Genre.FEMININ);
 		return stagiaire;
 	}
 	
-	public static Stagiaire getStagiaire_5() {
+	public static Stagiaire getMoutonJack() {
 		Stagiaire stagiaire= new Stagiaire("mouton", "jack", "HarrySociete");
 		stagiaire.setPeC(PriseEnCharge.SOCIETE);
 		stagiaire.setGenre(Genre.MASCULIN);
 		return stagiaire;
 	}
 	
-	public static Stagiaire getStagiaire_6() {
+	public static Stagiaire getDelagueJeanPiere() {
 		Stagiaire stagiaire= new Stagiaire("delague", "jean-piere", "HarrySociete");
 		stagiaire.setPeC(PriseEnCharge.SOCIETE);
 		stagiaire.setGenre(Genre.MASCULIN);
 		return stagiaire;
 	}
 	
-	public static Formateur getFormateur_1() {
+	public static Formateur getPouletFabrice() {
 		Formateur formateur= new Formateur("poulet", "fabrice", true, "559-225");
 		formateur.setInterne(true);
 		formateur.setGenre(Genre.MASCULIN);
@@ -126,12 +129,12 @@ public class Fixture {
 		session.setLieu("pekin");
 		session.setNbPlaces(4);
 		session.setNbPlacesMaxi(25);
-		session.setFormateur(getFormateur_1());
-		session.setFormation(getJavaEE());
-		session.ajoutStagiaire(getStagiaire_1());
-		session.ajoutStagiaire(getStagiaire_2());
-		session.ajoutStagiaire(getStagiaire_3());
-		session.ajoutStagiaire(getStagiaire_6());
+		session.setFormateur(getPouletFabrice());
+		session.setFormation(getPhp());
+		session.ajoutStagiaire(getBallutinJoe());
+		session.ajoutStagiaire(getDurantPascal());
+		session.ajoutStagiaire(getFerrariLaurence());
+		session.ajoutStagiaire(getDelagueJeanPiere());
 		return session;
 	}
 	
@@ -141,10 +144,12 @@ public class Fixture {
 		session.setLieu("lille");
 		session.setNbPlaces(0);
 		session.setNbPlacesMaxi(20);
-		session.setFormateur(getFormateur_1());
-		session.setFormation(getJavaEE());
-		session.ajoutStagiaire(getStagiaire_4());
-		session.ajoutStagiaire(getStagiaire_5());
+		Formateur formateur= FormateurDao.findby(getPouletFabrice(), em, false);
+		session.setFormateur(formateur!=null? formateur : getPouletFabrice());
+		Formation formation= FormationDao.findby(getJavaEE(), em, false);
+		session.setFormation(formation!=null? formation : getJavaEE());
+		session.ajoutStagiaire(getBalliuPaulette());
+		session.ajoutStagiaire(getMoutonJack());
 		return session;
 	}
 	
