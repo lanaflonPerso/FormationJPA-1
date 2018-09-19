@@ -1,12 +1,6 @@
 package com.vianney;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -17,8 +11,8 @@ public class Formateur extends Personne {
 	
 	private boolean interne;
 	private String matricule;
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
-	private List<Formation> competences= new ArrayList<>();
+//	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
+//	private List<Formation> competences= new ArrayList<>();
 	
 	public Formateur() {
 		super();

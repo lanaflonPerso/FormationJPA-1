@@ -8,7 +8,6 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
@@ -36,11 +35,6 @@ public class Session extends DbObject {
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
 	private Formateur formateur;
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
-//	@JoinTable(
-//        name = "Session_Stagiaires",
-//        		@JoinColumn(name="session_id"),
-//        joinColumns = @JoinColumn(name = "session_id"), 
-//        inverseJoinColumns = @JoinColumn(name = "stagiaire_id") )
 	private List<Stagiaire> stagiaires= new ArrayList<>();
 	
 	public Session() {
@@ -58,10 +52,7 @@ public class Session extends DbObject {
 	 * ******METHODES****************
 	 * ******************************/
 	public void ajoutStagiaire(Stagiaire stagiaire) {
-//		if(!stagiaires.contains(stagiaire)) {
-			stagiaires.add(stagiaire);
-//			stagiaire.setSession(this);
-//		}
+		stagiaires.add(stagiaire);
 	}
 	
 	/* ******************************
