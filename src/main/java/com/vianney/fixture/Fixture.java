@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import com.vianney.AdressePt;
 import com.vianney.Formateur;
 import com.vianney.Formation;
 import com.vianney.Session;
@@ -23,6 +24,14 @@ public class Fixture {
 		dao.saveOrUpdate(getSession_2(), em, false);
 		em.close();
 	}
+	
+	public static AdressePt getAdresse_1() {
+		AdressePt adresse= new AdressePt();
+		adresse.setRue1("25 rue victor hugo");
+		adresse.setZipCode("59000");
+		adresse.setVille("Lille");
+		return adresse;
+	}
 
 	public static Stagiaire getStagiaire_1() {
 		Stagiaire stagiaire= new Stagiaire("ballutin", "joe", "megaSociete");
@@ -36,7 +45,7 @@ public class Fixture {
 		Stagiaire stagiaire= new Stagiaire("durant", "pascal", "gigaSociete");
 		stagiaire.setPeC(PriseEnCharge.INDIVUDUEL);
 		stagiaire.setGenre(Genre.MASCULIN);
-		
+		stagiaire.setAdresse(getAdresse_1());
 		return stagiaire;
 	}
 	

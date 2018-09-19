@@ -13,7 +13,7 @@ import com.vianney.tools.PersistenceUnitFactory;
 public class main {
 
 	public static void main(String[] args) {
-//		Fixture.save();
+		Fixture.save();
 	
 		EntityManager em= PersistenceUnitFactory.createEntityManager(args[0]);
 		Dao dao= new Dao();
