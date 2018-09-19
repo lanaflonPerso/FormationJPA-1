@@ -66,8 +66,15 @@ public class Fixture {
 	
 	public static Stagiaire getStagiaire_5() {
 		Stagiaire stagiaire= new Stagiaire("mouton", "jack", "HarrySociete");
-		stagiaire.setPeC(PriseEnCharge.POLE_EMPLOI);
-		stagiaire.setGenre(Genre.FEMININ);
+		stagiaire.setPeC(PriseEnCharge.SOCIETE);
+		stagiaire.setGenre(Genre.MASCULIN);
+		return stagiaire;
+	}
+	
+	public static Stagiaire getStagiaire_6() {
+		Stagiaire stagiaire= new Stagiaire("delague", "jean-piere", "HarrySociete");
+		stagiaire.setPeC(PriseEnCharge.SOCIETE);
+		stagiaire.setGenre(Genre.MASCULIN);
 		return stagiaire;
 	}
 	
@@ -124,6 +131,7 @@ public class Fixture {
 		session.ajoutStagiaire(getStagiaire_1());
 		session.ajoutStagiaire(getStagiaire_2());
 		session.ajoutStagiaire(getStagiaire_3());
+		session.ajoutStagiaire(getStagiaire_6());
 		return session;
 	}
 	
