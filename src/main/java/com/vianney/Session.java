@@ -34,7 +34,7 @@ public class Session extends DbObject {
 	private Formation formation;
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REFRESH})
 	private Formateur formateur;
-	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	private List<Stagiaire> stagiaires= new ArrayList<>();
 	
 	public Session() {

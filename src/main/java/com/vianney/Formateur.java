@@ -1,6 +1,12 @@
 package com.vianney;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -11,8 +17,8 @@ public class Formateur extends Personne {
 	
 	private boolean interne;
 	private String matricule;
-//	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE}, fetch = FetchType.EAGER)
-//	private List<Formation> competences= new ArrayList<>();
+	@ManyToMany(cascade= CascadeType.ALL)
+	private List<Formation> competences= new ArrayList<>();
 	
 	public Formateur() {
 		super();
@@ -29,9 +35,9 @@ public class Formateur extends Personne {
 	/* ******************************
 	 * ******GETTER / SETTERS PERSO**
 	 * ******************************/
-//	public void setCompetence(Formation competence) {
-//		this.competences.add(competence);
-//	}
+	public void setCompetence(Formation competence) {
+		this.competences.add(competence);
+	}
 	/* ******************************
 	 * ******GETTER / SETTERS********
 	 * ******************************/
@@ -47,12 +53,12 @@ public class Formateur extends Personne {
 	public void setMatricule(String matricule) {
 		this.matricule = matricule;
 	}
-//	public List<Formation> getCompetences() {
-//		return competences;
-//	}
-//	public void setCompetences(List<Formation> competences) {
-//		this.competences = competences;
-//	}
+	public List<Formation> getCompetences() {
+		return competences;
+	}
+	public void setCompetences(List<Formation> competences) {
+		this.competences = competences;
+	}
 	@Override
 	public String toString() {
 		return "Formateur [interne=" + interne + ", matricule=" + matricule + ", getNom()=" + getNom()

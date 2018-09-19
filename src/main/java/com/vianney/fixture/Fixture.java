@@ -64,23 +64,25 @@ public class Fixture {
 	
 	public static Formateur getFormateur_1() {
 		Formateur formateur= new Formateur("poulet", "fabrice", true, "559-225");
+		formateur.setInterne(true);
 		formateur.setGenre(Genre.MASCULIN);
-//		formateur.setCompetence(getJavaEE());
+		formateur.setCompetence(getJavaEE());
 		return formateur;
 	}
 	
 	public static Formateur getFormateur_2() {
 		Formateur formateur= new Formateur("bakula", "franck", true, "559-212");
+		formateur.setInterne(true);
 		formateur.setGenre(Genre.MASCULIN);
-//		formateur.setCompetence(getPhp());
-//		formateur.setCompetence(getPhpTwig());
+		formateur.setCompetence(getPhp());
+		formateur.setCompetence(getPhpTwig());
 		return formateur;
 	}
 	
-
 	public static Formation getJavaEE() {
 		Formation formation= new Formation("Java EE", 150);
 		formation.setCode("JAVA-EE-00356");
+		formation.setPrix(2500.00);
 		return formation;
 	}
 	
