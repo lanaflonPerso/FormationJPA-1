@@ -1,7 +1,10 @@
 package com.vianney.dao;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
+import javax.persistence.TypedQuery;
 
 import com.vianney.DbObject;
 
@@ -46,6 +49,16 @@ public class Dao {
 			e.printStackTrace();
 		}
 		
+		if(closeConnection) {
+			em.close();
+		}
+		return result;
+	}
+	
+	public <T extends DbObject> List<T> findAll(Class<T> clazz, EntityManager em, boolean closeConnection) {
+		TypedQuery<T> query= em.createQuery("SELECT entity FROM "+clazz.getName()+" entity", clazz);
+		List<T> result= query.getResultList();
+
 		if(closeConnection) {
 			em.close();
 		}
