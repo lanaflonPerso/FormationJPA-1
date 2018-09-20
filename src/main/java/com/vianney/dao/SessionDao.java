@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.vianney.Session;
+import com.vianney.Stagiaire;
 
 public class SessionDao extends Dao {
 	
@@ -20,4 +21,6 @@ public class SessionDao extends Dao {
 		}
 		return result;
 	}
+	
+	public static List<Stagiaire> 
 }
