@@ -40,6 +40,10 @@ public class Session extends DbObject {
 	private Formateur formateur;
 	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.REFRESH, CascadeType.MERGE})
 	private List<Stagiaire> stagiaires= new ArrayList<>();
+	
+	@Transient
+	private Date dateFin;
+	
 	public Session() {
 		super();
 	}
@@ -105,14 +109,14 @@ public class Session extends DbObject {
 	public void setStagiaires(List<Stagiaire> stagiaires) {
 		this.stagiaires = stagiaires;
 	}
-	public Date getDateFin() {
+	public void getDateFin() {
 		if(formation != null) {
 			Calendar cal= Calendar.getInstance();
 			cal.setTime(date);
 			cal.add(Calendar.DAY_OF_YEAR, formation.getDuree());
-			return cal.getTime();
+			dateFin= cal.getTime();
 		} else {
-			return date;
+			dateFin= date;
 		}
 	}
 

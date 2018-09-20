@@ -1,6 +1,9 @@
 package com.vianney.test;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 
@@ -16,11 +19,15 @@ public class main {
 
 	public static void main(String[] args) {
 //		Fixture.save();
-	
-		EntityManager em= PersistenceUnitFactory.createEntityManager(args[0]);
-		List<Stagiaire> stagiaires= StagiaireDao.findByNom("ll", em); //dao.findAll(Stagiaire.class, em, false);
 		
-		Fixture.view(stagiaires);
+//		Calendar cal = Calendar.getInstance();
+//		cal.set(Calendar.YEAR, 2018);
+//		cal.set(Calendar.MONTH, Calendar.SEPTEMBER);
+//		cal.set(Calendar.DAY_OF_MONTH, 19);
+//		Date date= cal.getTime();
+
+		EntityManager em= PersistenceUnitFactory.createEntityManager(args[0]);
+		Fixture.view(StagiaireDao.findByNom("ll", em));
 		em.close();
 	}
 }

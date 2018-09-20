@@ -1,12 +1,14 @@
 package com.vianney.dao;
 
+import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import com.vianney.Session;
-import com.vianney.Stagiaire;
 
 public class SessionDao extends Dao {
 	
@@ -22,5 +24,13 @@ public class SessionDao extends Dao {
 		return result;
 	}
 	
-	public static List<Stagiaire> 
+	public static Set<Session> findByDate(Date date, EntityManager em) {
+		TypedQuery<Session> query=  em.createQuery(
+				"SELECT ss FROM Session ss, Formation F WHERE :date BETWEEN ss.date AND ADDDATE(ss.date, F.duree)", Session.class);
+		query.setParameter("date", date);
+		Set<Session> result= new HashSet<>();
+		result.addAll(query.getResultList());
+
+		return result;
+	}
 }
