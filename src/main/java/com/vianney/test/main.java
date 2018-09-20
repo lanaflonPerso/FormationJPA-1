@@ -15,10 +15,10 @@ import com.vianney.tools.PersistenceUnitFactory;
 public class main {
 
 	public static void main(String[] args) {
-		Fixture.save();
+//		Fixture.save();
 	
 		EntityManager em= PersistenceUnitFactory.createEntityManager(args[0]);
-		List<Stagiaire> stagiaires= StagiaireDao.findBySociete("HarrySociete", em, false); //dao.findAll(Stagiaire.class, em, false);
+		List<Stagiaire> stagiaires= StagiaireDao.findByNom("ll", em); //dao.findAll(Stagiaire.class, em, false);
 		
 		Fixture.view(stagiaires);
 		em.close();
