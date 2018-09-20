@@ -29,7 +29,7 @@ public class main {
 		EntityManager em= PersistenceUnitFactory.createEntityManager(args[0]);
 		List<Stagiaire> stagiaires= StagiaireDao.findByNom("mouton", em);
 		for (Stagiaire stagiaire : stagiaires) {
-			stagiaire.setSociete("MegaSociete");
+			stagiaire.setSociete("PicoSociete");
 			dao.saveOrUpdate(stagiaire, em, false);
 		}
 		Fixture.view(stagiaires);

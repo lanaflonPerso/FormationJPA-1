@@ -14,9 +14,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
-import org.hibernate.query.criteria.internal.FromImplementor;
-
 @MappedSuperclass
+//@EntityListeners(CustomListner.class)
 public abstract class DbObject implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
