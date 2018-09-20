@@ -8,11 +8,12 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
 import com.vianney.enumeration.Genre;
+import com.vianney.tools.Auditable;
 
 @Entity
 @Inheritance(strategy=InheritanceType.JOINED)
 //@DiscriminatorColumn(name="type_personne")
-public abstract class Personne extends DbObject {
+public abstract class Personne extends DbObject implements Auditable{
 	private static final long serialVersionUID = 1L;
 	
 //	@Column(nullable=false)

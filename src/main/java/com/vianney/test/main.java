@@ -25,9 +25,14 @@ public class main {
 //		cal.set(Calendar.MONTH, Calendar.SEPTEMBER);
 //		cal.set(Calendar.DAY_OF_MONTH, 19);
 //		Date date= cal.getTime();
-
+		Dao dao= new Dao();
 		EntityManager em= PersistenceUnitFactory.createEntityManager(args[0]);
-		Fixture.view(StagiaireDao.findByNom("ll", em));
+		List<Stagiaire> stagiaires= StagiaireDao.findByNom("mouton", em);
+		for (Stagiaire stagiaire : stagiaires) {
+			stagiaire.setSociete("MegaSociete");
+			dao.saveOrUpdate(stagiaire, em, false);
+		}
+		Fixture.view(stagiaires);
 		em.close();
 	}
 }

@@ -29,7 +29,7 @@ public class Stagiaire extends Personne {
 	private static final Logger LOG= Logger.getLogger(Stagiaire.class.getName());
 	{
 		try {
-			FileHandler handler= new FileHandler("stagiaire.log");
+			FileHandler handler= new FileHandler("stagiaire.log", true);
 			handler.setFormatter(new SimpleFormatter());
 			LOG.addHandler(handler);
 		} catch (SecurityException e) {
